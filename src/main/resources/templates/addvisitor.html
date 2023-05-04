@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Form</title>
+  <style>
+    body {
+      background-color: #ECECEC;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+    h1 {
+      font-size: 48px;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 50px;
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    input {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      font-size: 18px;
+      border-radius: 5px;
+      border: none;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      margin-bottom: 20px;
+    }
+    button {
+      display: block;
+      margin: 0 auto;
+      background-color: #333;
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 24px;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+<h1>Form</h1>
+<form action="/Billy`sGym/add/visitor" method="post">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required>
+  <label for="lastname">Lastname:</label>
+  <input type="text" id="lastname" name="lastname" required>
+  <label for="surname">Surname:</label>
+  <input type="text" id="surname" name="surname" required>
+  <label for="telephone">Telephone:</label>
+  <input type="tel" id="telephone" name="telephone" required>
+  <button type="submit">Submit</button>
+</form>
+</body>
+</html>

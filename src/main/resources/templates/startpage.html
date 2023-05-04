@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Billy`sGym</title>
+    <style>
+        body {
+            background-color: #ECECEC;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            font-size: 48px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 50px;
+        }
+        nav {
+            background-color: #222;
+            color: #fff;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        img {
+            display: block;
+            margin: 0 auto;
+            max-width: 400px;
+            max-height: 400px;
+        }
+        .refresh-btn {
+            display: block;
+            margin: 20px auto;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .delete-btn {
+            display: block;
+            margin: 20px auto;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        input[type="text"] {
+            display: block;
+            margin: 20px auto;
+            padding: 10px;
+            font-size: 24px;
+            border-radius: 10px;
+            border: none;
+            box-shadow: 0 0 5px #000;
+            width: 50%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<h1>Billy`sGym</h1>
+<img src="https://i.pinimg.com/originals/d4/dd/08/d4dd08e6a7131f358d0ebcca1094fd9a.png" alt="Gym photo">
+<form action="/Billy`sGym/check" method="POST">
+    <input type="text" name="name" placeholder="Name">
+    <input type="text" name="surname" placeholder="Surname">
+    <input type="text" name="lastname" placeholder="Lastname">
+    <button type="submit" class="submit-btn">Відправити</button>
+</form>
+<style>
+    .submit-btn {
+        display: block;
+        margin: 20px auto;
+        background-color: #333;
+        color: #fff;
+        padding: 10px 20px;
+        font-size: 24px;
+        font-weight: bold;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .submit-btn:hover {
+        background-color: #555;
+    }
+</style>
+<nav>
+    <a href="/Billy`sGym/add/visitor">Add visitor</a>
+    <a href="/Billy`sGym/add/trainer">Add trainer</a>
+    <a href="/Billy`sGym/visitors">All visitors</a>
+    <a href="#">All trainers</a>
+    <span class="delete-btn">Delete visitor</span>
+    <span class="delete-btn">Delete trainer</span>
+    <span class="refresh-btn">Refresh</span>
+</nav>
+<script>
+    const refreshBtn = document.querySelector('.refresh-btn');
+    refreshBtn.addEventListener('click', () => {
+        if (confirm('Are you sure you want to refresh?')) {
+            window.location.reload();
+        }
+    });
+</script>
+</body>
+</html>

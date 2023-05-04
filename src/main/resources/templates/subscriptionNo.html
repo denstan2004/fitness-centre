@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Expired subscription</title>
+</head>
+<body>
+<h1>Your subscription has expired</h1>
+<p>Please choose how you want to renew your subscription:</p>
+<form action="/BillsGym/renew" method="post">
+  <input type="hidden" name="name" value="${name}">
+  <input type="hidden" name="surname" value="${surname}">
+  <input type="hidden" name="lastname" value="${lastname}">
+  <input type="radio" name="period" value="day">Renew for 1 day<br>
+  <input type="radio" name="period" value="month">Renew for 1 month<br>
+  <input type="submit" value="Submit">
+</form>
+</body>
+</html>

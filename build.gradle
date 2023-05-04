@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+// https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf-spring5
+    implementation 'org.thymeleaf:thymeleaf-spring5:3.1.1.RELEASE'
+
+
+    implementation 'javax.persistence:persistence-api:1.0.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    // https://mvnrepository.com/artifact/org.postgresql/postgresql
+    implementation 'org.postgresql:postgresql:42.6.0'
+// https://mvnrepository.com/artifact/org.hibernate/hibernate-core
+    implementation 'org.hibernate:hibernate-core:6.2.0.Final'
+// https://mvnrepository.com/artifact/org.projectlombok/lombok
+    compileOnly 'org.projectlombok:lombok:1.18.26'
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
+    implementation 'org.springframework.boot:spring-boot-starter-web:3.0.5'
+    // https://mvnrepository.com/artifact/org.springframework/spring-core
+    implementation 'org.springframework:spring-core:6.0.8'
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:3.0.5'
+
+// https://mvnrepository.com/artifact/org.springframework/spring-webmvc
+    implementation 'org.springframework:spring-webmvc:6.0.8'
+    implementation 'org.springframework.boot:spring-boot-starter-tomcat'
+}
+
+test {
+    useJUnitPlatform()
+}
