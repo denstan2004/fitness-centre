@@ -15,6 +15,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VisitorDao {
+    public Visitor getOneById(int id) {
+
+        Configuration cfg = new Configuration();
+        cfg.configure("hibernate.cfg.xml");
+        SessionFactory factory = cfg.buildSessionFactory();
+        Session session = factory.openSession();
+        Transaction t = session.beginTransaction();
+        Query query = session.createQuery("from Visitor v where v.id=:id");
+        query.setParameter("id", id);
+        Visitor visitor = (Visitor) query.uniqueResult();
+        t.commit();
+        session.close();
+        return  visitor;
+    }
+    public Visitor getOneByNumber(String number) {
+
+        Configuration cfg = new Configuration();
+        cfg.configure("hibernate.cfg.xml");
+        SessionFactory factory = cfg.buildSessionFactory();
+        Session session = factory.openSession();
+        Transaction t = session.beginTransaction();
+        Query query = session.createQuery("from Visitor v where v.telephone=:number");
+        query.setParameter("number",number );
+        Visitor visitor = (Visitor) query.uniqueResult();
+        t.commit();
+        session.close();
+        return  visitor;
+    }
 
     public Visitor getOne(String name, String lastname, String surname) {
 
@@ -94,37 +122,44 @@ public void visitorSave(Visitor visitor)
             query.setParameter("surname", surname);
             tx.commit();
     }
-    public void updateSubscriptionVisitor(String name, String lastname, String surname) {
+    public void updateSubscriptionVisitor(Visitor visitor) {
         Configuration cfg = new Configuration();
         cfg.configure("hibernate.cfg.xml");
         SessionFactory factory = cfg.buildSessionFactory();
         Session session = factory.openSession();
         Transaction t = session.beginTransaction();
-        Query query = session.createQuery("from Visitor v where v.name=:name and v.lastname=:lastname and v.surname=:surname");
-        query.setParameter("name", name);
-        query.setParameter("lastname", lastname);
-        query.setParameter("surname", surname);
-        Visitor visitor = (Visitor) query.uniqueResult();
+
+        Visitor oldVisitor = session.get(Visitor.class, visitor.getId());
+        oldVisitor.setName(visitor.getName());
+        oldVisitor.setSubscription(visitor.getSubscription());
+        oldVisitor.setTelephone(visitor.getTelephone());
+        oldVisitor.setSurname(visitor.getSurname());
+        oldVisitor.setLastname(visitor.getLastname());
         LocalDateTime newDate = LocalDateTime.now().plusDays(30);
-        visitor.setSubscription(newDate);
-        session.update(visitor);
+        oldVisitor.setSubscription(newDate);
+        session.update(oldVisitor);
+
         t.commit();
         session.close();
     }
-    public void updateForOneDay(String name, String lastname, String surname) {
+
+    public void updateForOneDay(Visitor visitor) {
         Configuration cfg = new Configuration();
         cfg.configure("hibernate.cfg.xml");
         SessionFactory factory = cfg.buildSessionFactory();
         Session session = factory.openSession();
         Transaction t = session.beginTransaction();
-        Query query = session.createQuery("from Visitor v where v.name=:name and v.lastname=:lastname and v.surname=:surname");
-        query.setParameter("name", name);
-        query.setParameter("lastname", lastname);
-        query.setParameter("surname", surname);
-        Visitor visitor = (Visitor) query.uniqueResult();
+
+        Visitor oldVisitor = session.get(Visitor.class, visitor.getId());
+        oldVisitor.setName(visitor.getName());
+        oldVisitor.setSubscription(visitor.getSubscription());
+        oldVisitor.setTelephone(visitor.getTelephone());
+        oldVisitor.setSurname(visitor.getSurname());
+        oldVisitor.setLastname(visitor.getLastname());
         LocalDateTime newDate = LocalDateTime.now();
-        visitor.setSubscription(newDate);
-        session.update(visitor);
+        oldVisitor.setSubscription(newDate);
+        session.update(oldVisitor);
+
         t.commit();
         session.close();
     }

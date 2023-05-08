@@ -29,6 +29,27 @@
             left: 0;
             right: 0;
         }
+        .find-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-weight: bold;
+            font-size: 24px;
+            color: black;
+        }
+        nav button.find-btn {
+            background-color: transparent;
+            color: black;
+            border: none;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        nav button.find-btn:hover {
+            color: gray;
+        }
         nav a {
             color: #fff;
             text-decoration: none;
@@ -75,15 +96,24 @@
             width: 50%;
             text-align: center;
         }
+        #id-input {
+            display: block;
+            margin: 20px auto;
+            padding: 10px;
+            font-size: 24px;
+            border-radius: 10px;
+            border: none;
+            box-shadow: 0 0 5px #000;
+            width: 50%;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
 <h1>Billy`sGym</h1>
 <img src="https://i.pinimg.com/originals/d4/dd/08/d4dd08e6a7131f358d0ebcca1094fd9a.png" alt="Gym photo">
 <form action="/Billy`sGym/check" method="POST">
-    <input type="text" name="name" placeholder="Name">
-    <input type="text" name="surname" placeholder="Surname">
-    <input type="text" name="lastname" placeholder="Lastname">
+    <input type="text" id="id-input" name="id" placeholder="ID абонемента">
     <button type="submit" class="submit-btn">Відправити</button>
 </form>
 <style>
@@ -98,7 +128,8 @@
         border-radius: 10px;
         border: none;
         cursor: pointer;
-        transition: background-color 0.3s ease;
+        transition: background-color 0.3s ease
+
     }
 
     .submit-btn:hover {
@@ -106,13 +137,14 @@
     }
 </style>
 <nav>
+    <a href="/Billy`sGym/check/number" class="find-btn">Find by tel_number</a>
     <a href="/Billy`sGym/add/visitor">Add visitor</a>
     <a href="/Billy`sGym/add/trainer">Add trainer</a>
     <a href="/Billy`sGym/visitors">All visitors</a>
     <a href="#">All trainers</a>
-    <span class="delete-btn">Delete visitor</span>
     <span class="delete-btn">Delete trainer</span>
     <span class="refresh-btn">Refresh</span>
+
 </nav>
 <script>
     const refreshBtn = document.querySelector('.refresh-btn');

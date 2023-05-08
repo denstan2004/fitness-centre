@@ -24,6 +24,18 @@ public class Visitor {
     private String surname;
     @Column(name="lastname")
     private  String lastname;
+    @Column(name="photo")
+    private String photoPath;
+
+    public String getPhotoPath() {
+        return photoPath;
+    }
+
+    public void setPhotoPath(String photoPath) {
+        this.photoPath = photoPath;
+    }
+
+
 
     @Override
     public String toString() {
@@ -77,11 +89,13 @@ public class Visitor {
         this.lastname = lastname;
     }
 
+    public LocalDateTime getSubscription() {
+        return subscription;
+    }
 
-
-
-
-
+    public void setSubscription(LocalDateTime subscription) {
+        this.subscription = subscription;
+    }
 
     public Visitor(String telephone, LocalDateTime subscription, String name, String surname, String lastname) {
         this.telephone = telephone;
@@ -89,18 +103,11 @@ public class Visitor {
         this.name = name;
         this.surname = surname;
         this.lastname = lastname;
+
     }
+
 
     public Visitor() {
 
-    }
-
-
-    public LocalDateTime getSubscription() {
-        return subscription;
-    }
-
-    public void setSubscription(LocalDateTime subscription) {
-        this.subscription = subscription;
     }
 }

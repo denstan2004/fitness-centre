@@ -56,8 +56,8 @@
 <body>
 <h1>Your subscription has expired</h1>
 <p>Please choose how you want to renew your subscription:</p>
-<form action="/Billy`sGym/renew" method="post">
-  <input type="hidden" name="id" th:value="${id}">
+<form action="/Billy`sGym/renew/number" method="post">
+  <input type="hidden" name="number" th:value="${number}">
   <input type="radio" name="period" value="day">Renew for 1 day<br>
   <input type="radio" name="period" value="month">Renew for 1 month<br>
   <input type="submit" value="Renew">
