@@ -1,7 +1,7 @@
 package org.example.Models;
 import jakarta.persistence.*;
 import lombok.Data;
-import java.io.Serializable;
+import org.hibernate.annotations.Type;
 
 import java.time.LocalDateTime;
 
@@ -25,13 +25,13 @@ public class Visitor {
     @Column(name="lastname")
     private  String lastname;
     @Column(name="photo")
-    private String photoPath;
+    private byte[] photoPath;
 
-    public String getPhotoPath() {
+    public byte[] getPhotoPath() {
         return photoPath;
     }
 
-    public void setPhotoPath(String photoPath) {
+    public void setPhotoPath(byte[] photoPath) {
         this.photoPath = photoPath;
     }
 

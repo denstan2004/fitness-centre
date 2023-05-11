@@ -1,28 +1,24 @@
 package org.example.Controllers;
 
+import org.example.DAO.TrainerDao;
 import org.example.DAO.VisitorDao;
+import org.example.Models.Trainer;
 import org.example.Models.Visitor;
-import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
+import java.util.Base64;
 
 @RestController
 @RequestMapping("/")
-public class VisitorController {
+public class Controller {
     VisitorDao visitorDao=new VisitorDao();
-
+    TrainerDao trainerDao =new TrainerDao();
 
     @PostMapping("/Billy`sGym/renew")
     public ModelAndView renewSubscription(@RequestParam("id") int id,
@@ -74,7 +70,12 @@ public class VisitorController {
         if(visitorDao.checkSubscription(visitor.getName(), visitor.getLastname(), visitor.getSurname())=="абонемент ще дійсний")
         {
             ModelAndView mav = new ModelAndView("subscriptionOk");
-            mav.addObject(visitorDao.getOne(visitor.getName(), visitor.getLastname(), visitor.getSurname()));
+
+            // Convert byte array to Base64 encoded string
+            String photoAsBase64 = Base64.getEncoder().encodeToString(visitor.getPhotoPath());
+
+            mav.addObject("visitor", visitor);
+            mav.addObject("photoAsBase64", photoAsBase64);
             return mav;
         }
         else {
@@ -92,7 +93,12 @@ public class VisitorController {
         if(visitorDao.checkSubscription(visitor.getName(), visitor.getLastname(), visitor.getSurname())=="абонемент ще дійсний")
         {
             ModelAndView mav = new ModelAndView("subscriptionOk");
-            mav.addObject(visitorDao.getOne(visitor.getName(), visitor.getLastname(), visitor.getSurname()));
+
+            // Convert byte array to Base64 encoded string
+            String photoAsBase64 = Base64.getEncoder().encodeToString(visitor.getPhotoPath());
+
+            mav.addObject("visitor", visitor);
+            mav.addObject("photoAsBase64", photoAsBase64);
             return mav;
         }
         else
@@ -107,6 +113,7 @@ public class VisitorController {
 
     }
 
+
     @GetMapping("/Billy`sGym")
     public ModelAndView index() {
         ModelAndView mav = new ModelAndView("startpage");
@@ -116,18 +123,15 @@ public class VisitorController {
         return mav;
     }
     @PostMapping("/Billy`sGym/add/visitor")
-    public RedirectView create(@ModelAttribute("visitor") Visitor visitor,@RequestParam("photo") MultipartFile photo) {
+    public RedirectView createVisitor(@ModelAttribute("visitor") Visitor visitor, @RequestParam("photo") MultipartFile photo) {
         visitor.setSubscription(LocalDateTime.now().minusDays(1));
 
         try {
-            String fileName = StringUtils.cleanPath(photo.getOriginalFilename());
-            Path tempDir = Paths.get(System.getProperty("java.io.tmpdir"));
-            Path filePath = tempDir.resolve(fileName);
-            Files.copy(photo.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
-            visitor.setPhotoPath(filePath.toString());
+            visitor.setPhotoPath(photo.getBytes());
         } catch (IOException e) {
-            // обробити помилку збереження зображення
+            throw new RuntimeException(e);
         }
+
         visitorDao.visitorSave(visitor);
 
             return new RedirectView("/Billy`sGym", true);
@@ -145,4 +149,57 @@ public class VisitorController {
         ModelAndView mav = new ModelAndView("addvisitor");
         return mav;
     }
+    //----------------------------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------------------------------
+//                                                    TRAINERS
+    @GetMapping("/Billy`sGym/add/trainer")
+    public ModelAndView addtrainer(@ModelAttribute("trainer")Trainer trainer) {
+
+        ModelAndView mav = new ModelAndView("addtrainer");
+        return mav;
+    }
+    @PostMapping("/Billy`sGym/add/trainer")
+    public RedirectView createTrainer(@ModelAttribute("trainer") Trainer trainer,@RequestParam("photo") MultipartFile photo) {
+
+        try {
+           trainer.setPhotoPath(photo.getBytes());
+        } catch (IOException e) {
+
+        }
+
+       trainerDao.trainerSave(trainer);
+
+        return new RedirectView("/Billy`sGym", true);
+
+    }
+    @PostMapping("/trainers/present/False")
+    public RedirectView changePresentFalse(@RequestParam("id") int id) {
+
+
+          trainerDao.changePresentFalse((long) id);
+        return new RedirectView("/Billy`sGym/trainers", true);
+
+    }
+    @PostMapping("/trainers/present/True")
+    public RedirectView changePresentTrue(@RequestParam("id") int id) {
+
+
+        trainerDao.changePresentTrue((long) id);
+        return new RedirectView("/Billy`sGym/trainers", true);
+
+    }
+
+    @GetMapping("/Billy`sGym/trainers")
+    public ModelAndView trainers(Model model) {
+        model.addAttribute("trainers",trainerDao.getAllTrainers());
+        ModelAndView mav = new ModelAndView("trainers");
+        return mav;
+    }
+
 }

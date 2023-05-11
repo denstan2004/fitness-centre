@@ -10,7 +10,10 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,9 +79,9 @@ public class VisitorDao {
         query.setParameter("lastname", lastname);
         query.setParameter("surname", surname);
         Visitor visitor = (Visitor) query.uniqueResult();
-        LocalDateTime newDate = LocalDateTime.now();
+        LocalDateTime newDate = LocalDateTime.of(LocalDate.now(), LocalTime.MIDNIGHT);
 
-        if(visitor.getSubscription().isBefore(newDate)) {result="абонемент закінчився";}
+        if(visitor.getSubscription().isBefore(newDate) ||visitor.getSubscription().isEqual(newDate)) {result="абонемент закінчився";}
         t.commit();
         session.close();
         return  result;

@@ -1,35 +1,35 @@
 package org.example.DAO;
 
 import org.example.Models.Trainer;
-import org.example.Models.Visitor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
-import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TrainerDao {
-    public List<Visitor> getAllTrainers()
+    Configuration cfg = new Configuration();
+    public List<Trainer> getAllTrainers()
     {
-        List<Visitor> trainerList =new ArrayList<>();
-        Configuration cfg = new Configuration();
+        List<Trainer> trainerList =new ArrayList<>();
+
         cfg.configure("hibernate.cfg.xml");
         SessionFactory factory = cfg.buildSessionFactory();
         Session session = factory.openSession();
         Transaction t = session.beginTransaction();
         Query query = session.createQuery("FROM Trainer");
-        trainerList= query.list();
+        trainerList = query.list();
         t.commit();
         session.close();
         return trainerList;
     }
+
     public void trainerSave(Trainer trainer)
     {
-        Configuration cfg = new Configuration();
+
         cfg.configure("hibernate.cfg.xml");
         SessionFactory factory = cfg.buildSessionFactory();
         Session session = factory.openSession();
@@ -39,7 +39,7 @@ public class TrainerDao {
         session.close();
     }
     public void trainerDelete(String name, String lastname, String surname) {
-        Configuration cfg = new Configuration().configure();
+
         SessionFactory factory = cfg.buildSessionFactory();
         Session session = factory.openSession() ;
         Transaction tx = session.beginTransaction();
@@ -49,4 +49,37 @@ public class TrainerDao {
         query.setParameter("surname", surname);
         tx.commit();
     }
+
+
+    public void changePresentFalse(Long id) {
+
+        cfg.configure("hibernate.cfg.xml");
+        SessionFactory factory = cfg.buildSessionFactory();
+        Session session = factory.openSession();
+        Transaction t = session.beginTransaction();
+        Trainer trainer = session.get(Trainer.class, id);
+        if(trainer.isReady()) {
+            trainer.setReady(false);
+        }
+        trainer.setCountVisitors(trainer.getCountVisitors()+1);
+        session.saveOrUpdate(trainer);
+        t.commit();
+        session.close();
+    }
+    public void changePresentTrue(Long id) {
+        cfg.configure("hibernate.cfg.xml");
+        SessionFactory factory = cfg.buildSessionFactory();
+        Session session = factory.openSession();
+        Transaction t = session.beginTransaction();
+        Trainer trainer = session.get(Trainer.class, id);
+        if(trainer.isReady()==false) {
+            trainer.setReady(true);
+        }
+
+        session.saveOrUpdate(trainer);
+        t.commit();
+        session.close();
+    }
+
+
 }
