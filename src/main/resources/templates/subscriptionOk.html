@@ -1,55 +1,74 @@
-  <!DOCTYPE html>
-  <html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8">
-    <title>Billy`sGym | Visitor Info</title>
-    <style>
-      body {
-        background-color: #ECECEC;
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-      }
-      h1 {
-        font-size: 48px;
-        font-weight: bold;
-        text-align: center;
-        margin-top: 50px;
-      }
-      .visitor-info {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 50px;
-      }
-      .visitor-info h2 {
-        font-size: 36px;
-        font-weight: bold;
-        margin-bottom: 20px;
-      }
-      .visitor-info p {
-        font-size: 24px;
-        margin: 10px 0;
-      }
-      .valid {
-        color: green;
-        font-weight: bold;
-      }
-      .invalid {
-        color: red;
-        font-weight: bold;
-      }
-    </style>
-  </head>
-  <body>
-  <h1>Billy`sGym</h1>
-  <div class="visitor-info">
-    <h2>Visitor Info</h2>
-    <p><strong>Name:</strong> <span th:text="${visitor.name}"></span></p>
-    <p><strong>Surname:</strong> <span th:text="${visitor.surname}"></span></p>
-    <p><strong>Lastname:</strong> <span th:text="${visitor.lastname}"></span></p>
-    <p><strong>Photo:</strong> <img th:src="@{'data:image/png;base64,' + ${photoAsBase64}}" /></p>
-
-  </div>
-  </body>
-  </html>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Billy`sGym | Visitor Info</title>
+  <style>
+    body {
+      background-color: #ECECEC;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    h1 {
+      font-size: 48px;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 50px;
+    }
+    .btn {
+      display: block;
+      margin: 20px auto 0;
+      padding: 10px 20px;
+      background-color: #444;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 3px;
+      transition: background-color 0.3s ease;
+    }
+    .btn:hover {
+      background-color: #3e8e41;
+    }
+    .visitor-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 50px;
+    }
+    .visitor-info h2 {
+      font-size: 36px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    .visitor-info p {
+      font-size: 24px;
+      margin: 10px 0;
+    }
+    .valid {
+      color: green;
+      font-weight: bold;
+    }
+    .invalid {
+      color: red;
+      font-weight: bold;
+    }
+    .photo {
+      max-width: 100%;
+      max-height: 400px; /* Задайте максимальну висоту, яку ви хочете */
+      margin: 10px 0;
+      object-fit: contain; /* Зображення буде зберігати свої пропорції */
+    }
+  </style>
+</head>
+<body>
+<h1>Billy`sGym</h1>
+<div class="visitor-info">
+  <h2>Visitor Info</h2>
+  <p><strong>Ім'я:</strong> <span th:text="${visitor.name}"></span></p>
+  <p><strong>Прізвище:</strong> <span th:text="${visitor.surname}"></span></p>
+  <p><strong>По-Батькові:</strong> <span th:text="${visitor.lastname}"></span></p>
+  <p> <img th:src="@{'data:image/png;base64,' + ${photoAsBase64}}" class="photo" /></p>
+  <a href="/BillysGym" class="btn">На головну</a>
+</div>
+</body>
+</html>

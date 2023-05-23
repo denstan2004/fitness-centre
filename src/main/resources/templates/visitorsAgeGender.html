@@ -59,7 +59,7 @@
 <body>
 <div class="container">
   <h1>Visitors</h1>
-  <a class="button" href="http://localhost:8080/BillysGym">На Головну</a>
+  <a class="button" href="http://localhost:8080/admin">На Головну</a>
   <table>
     <thead>
     <tr>
@@ -69,6 +69,8 @@
       <th>По-Батькові</th>
       <th>номер телефону</th>
       <th>кінець абонементу</th>
+      <th>стать</th>
+      <th>вік</th>
 
     </tr>
     </thead>
@@ -80,6 +82,8 @@
       <td th:text="${visitor.getLastname()}"></td>
       <td th:text="${visitor.getTelephone()}"></td>
       <td th:text="${visitor.getSubscriptionDayOfMonth()}"></td>
+      <td th:text="${visitor.getSex().equals('F') ? 'Ж' : 'Ч'}"></td>
+      <td th:text="${visitor.getAge()}"></td>
 
     </tr>
     </tbody>

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Billy`sGym</title>
+    <title>Billy`sGym Admin</title>
     <style>
         body {
             background-color: #ECECEC;
@@ -22,7 +22,7 @@
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
             padding: 10px 20px;
             position: fixed;
             bottom: 0;
@@ -53,9 +53,11 @@
         nav a {
             color: #fff;
             text-decoration: none;
-            margin: 0 20px;
-            font-size: 24px;
+            margin: 0 0px; /* Змінив з 20px на 10px */
+            font-size: 26px; /* Змінив з 24px на 18px */
             font-weight: bold;
+            white-space: nowrap; /* Запобігає перенесенню тексту на новий рядок */
+            padding: 8px; /* Додав padding для більшого проміжку між посиланнями */
         }
         img {
             display: block;
@@ -64,17 +66,6 @@
             max-height: 400px;
         }
         .refresh-btn {
-            display: block;
-            margin: 20px auto;
-            background-color: #333;
-            color: #fff;
-            padding: 10px 20px;
-            font-size: 24px;
-            font-weight: bold;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-        .delete-btn {
             display: block;
             margin: 20px auto;
             background-color: #333;
@@ -96,63 +87,29 @@
             width: 50%;
             text-align: center;
         }
-        #id-input {
-            display: block;
-            margin: 20px auto;
-            padding: 10px;
-            font-size: 24px;
-            border-radius: 10px;
-            border: none;
-            box-shadow: 0 0 5px #000;
-            width: 50%;
+        .visitor-count {
             text-align: center;
+            font-size: 40px;
+            font-weight: bold;
+            margin-top: 20px; /* Додав проміжок зверху */
         }
     </style>
 </head>
 <body>
 <h1>Billy`sGym</h1>
 <img src="http://127.0.0.1:8887/%D0%B7%D0%B0%D0%B2%D0%B0%D0%BD%D1%82%D0%B0%D0%B6%D0%B5%D0%BD%D0%BD%D1%8F-396x510-Enhanced%20(2).jpg" alt="Gym photo">
-<form action="/BillysGym/check" method="POST" id="id-form">
-    <input type="text" id="id-input" name="id" placeholder="ID абонемента" required>
-    <button type="submit" class="submit-btn">Відправити</button>
-</form>
-
-
-<style>
-    .submit-btn {
-        display: block;
-        margin: 20px auto;
-        background-color: #333;
-        color: #fff;
-        padding: 10px 20px;
-        font-size: 24px;
-        font-weight: bold;
-        border-radius: 10px;
-        border: none;
-        cursor: pointer;
-        transition: background-color 0.3s ease
-
-    }
-
-    .submit-btn:hover {
-        background-color: #555;
-    }
-</style>
 <nav>
-    <a href="/BillysGym/check/number" class="find-btn">Find by tel_number</a>
-    <a href="/BillysGym/add/visitor">Add visitor</a>
-    <a href="/BillysGym/visitors">All visitors</a>
-    <a href="/BillysGym/trainers">All trainers</a>
-
-
+    <a href="/admin/delete/trainer">Delete Trainer</a>
+    <a href="/admin/add/trainer">Add Trainer</a>
+    <a href="/admin/trainers">All Trainers</a>
+    <a href="/admin/refresh/trainer">Refresh Trainer Stats</a>
+    <a href="/admin/add/abonement">Add Abonement</a>
+    <a href="/admin/delete/abonement">Delete Abonement</a>
+    <a href="/admin/abonements">All Abonements</a>
+    <a href="/admin/visitors/all/by-age">Visitors by Age & Gender</a>
 </nav>
-<script>
-    const refreshBtn = document.querySelector('.refresh-btn');
-    refreshBtn.addEventListener('click', () => {
-        if (confirm('Are you sure you want to refresh?')) {
-            window.location.reload();
-        }
-    });
-</script>
+
+<p class="visitor-count">Кількість відвідувачів: <span th:text="${id}"></span></p>
+
 </body>
 </html>

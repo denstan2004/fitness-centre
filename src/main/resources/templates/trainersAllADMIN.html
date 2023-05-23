@@ -1,8 +1,10 @@
+
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Visitors</title>
+  <title>Trainers</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98\/W6Uq9+3aC6E9T43AltkaRxp\
   bV99+CYa59iKTSHxyP63XmJXQ5tREQAiBp" crossorigin="anonymous">
   <style>
@@ -37,6 +39,26 @@
     }
     .button {
       display: inline-block;
+      padding: 8px 16px;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.5;
+      text-align: center;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .button:hover {
+      background-color: #0069d9;
+    }
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+    }
+    .buttons {
+      display: inline-block;
       padding: 12px 24px;
       font-size: 20px;
       font-weight: 600;
@@ -51,40 +73,37 @@
       top: 20px;
       left: 20px;
     }
-    .button:hover {
+    .buttons:hover {
       background-color: #222;
     }
   </style>
 </head>
 <body>
 <div class="container">
-  <h1>Visitors</h1>
-  <a class="button" href="http://localhost:8080/BillysGym">На Головну</a>
+  <h1>Trainers</h1>
+  <a class="buttons" href="http://localhost:8080/BillysGym">На Головну</a>
   <table>
     <thead>
     <tr>
-      <th>id</th>
-      <th>Ім'я</th>
-      <th>Прізвище</th>
-      <th>По-Батькові</th>
-      <th>номер телефону</th>
-      <th>кінець абонементу</th>
-
+      <th>Name</th>
+      <th>Surname</th>
+      <th>Lastname</th>
+      <th>Telephone</th>
+      <th>ID</th>
+      <th>PeopleCount</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="visitor : ${visitors}">
-      <td th:text="${visitor.getId()}"></td>
-      <td th:text="${visitor.getName()}"></td>
-      <td th:text="${visitor.getSurname()}"></td>
-      <td th:text="${visitor.getLastname()}"></td>
-      <td th:text="${visitor.getTelephone()}"></td>
-      <td th:text="${visitor.getSubscriptionDayOfMonth()}"></td>
-
+    <tr th:each="trainer : ${trainers}">
+      <td th:text="${trainer.getName()}"></td>
+      <td th:text="${trainer.getSurname()}"></td>
+      <td th:text="${trainer.getLastname()}"></td>
+      <td th:text="${trainer.getTelephone()}"></td>
+      <td th:text="${trainer.getId()}"></td>
+      <td th:text="${trainer.getCountVisitors()}"></td>
     </tr>
     </tbody>
   </table>
 </div>
 </body>
-
 </html>

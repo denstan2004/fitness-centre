@@ -4,20 +4,37 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5255ba41-7159-4379-b909-b79cd8235e15" name="Changes" comment="second save">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/addtrainer.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/trainers.html" afterDir="false" />
+    <list default="true" id="5255ba41-7159-4379-b909-b79cd8235e15" name="Changes" comment="beta version">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Controllers/AdminController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/DAO/AbonementDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Models/Abonement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/abonements.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/addabonement.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/adminStartPage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/allVisitorsByAgeGender.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/deleteabonement.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/deletetrainer.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/notfound.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/trainerrefresh.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/trainersAllADMIN.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/visitorsAgeGender.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Controllers/TrainerController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Controllers/VisitorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Controllers/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Controllers/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Controllers/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DAO/TrainerDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DAO/TrainerDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/DAO/VisitorDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/DAO/VisitorDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Models/Trainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Models/Trainer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Models/Visitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Models/Visitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/images/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/addtrainer.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/addtrainer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/addvisitor.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/addvisitor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/findByNumber.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/findByNumber.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/renewSuccess.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/renewSuccess.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/startpage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/startpage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/subscriptionNo.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/subscriptionNo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/subscriptionNoNumber.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/subscriptionNoNumber.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/subscriptionOk.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/subscriptionOk.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/trainers.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/trainers.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/visitors.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/visitors.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -72,6 +89,10 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
     &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
     &quot;RequestMappingsPanelOrder2&quot;: &quot;2&quot;,
@@ -105,8 +126,8 @@
       <recent name="D:\Users\DENNI\projects\cursova_fitness_center\src\main\resources\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Users\DENNI\projects\cursova_fitness_center\src\main\resources\images" />
       <recent name="D:\Users\DENNI\projects\cursova_fitness_center\src\main\resources\templates" />
+      <recent name="D:\Users\DENNI\projects\cursova_fitness_center\src\main\resources\images" />
     </key>
   </component>
   <component name="RunManager">
@@ -144,7 +165,37 @@
       <workItem from="1683716017441" duration="1376000" />
       <workItem from="1683725217586" duration="479000" />
       <workItem from="1683742407094" duration="3861000" />
-      <workItem from="1683784394750" duration="3034000" />
+      <workItem from="1683784394750" duration="6712000" />
+      <workItem from="1683873877428" duration="5524000" />
+      <workItem from="1683880559801" duration="160000" />
+      <workItem from="1683880881632" duration="2821000" />
+      <workItem from="1683885864517" duration="1482000" />
+      <workItem from="1683889643640" duration="686000" />
+      <workItem from="1683995038534" duration="300000" />
+      <workItem from="1684140836536" duration="3059000" />
+      <workItem from="1684157647831" duration="425000" />
+      <workItem from="1684158488151" duration="813000" />
+      <workItem from="1684225889528" duration="5519000" />
+      <workItem from="1684233433001" duration="239000" />
+      <workItem from="1684238299969" duration="603000" />
+      <workItem from="1684239827576" duration="9000" />
+      <workItem from="1684240715982" duration="1367000" />
+      <workItem from="1684242280176" duration="155000" />
+      <workItem from="1684242800073" duration="123000" />
+      <workItem from="1684253565664" duration="1355000" />
+      <workItem from="1684304607743" duration="7307000" />
+      <workItem from="1684318132686" duration="1354000" />
+      <workItem from="1684320144936" duration="2056000" />
+      <workItem from="1684404486241" duration="5137000" />
+      <workItem from="1684417419770" duration="3257000" />
+      <workItem from="1684423475983" duration="53000" />
+      <workItem from="1684495055769" duration="6166000" />
+      <workItem from="1684659911122" duration="1880000" />
+      <workItem from="1684666123749" duration="5172000" />
+      <workItem from="1684739109306" duration="7031000" />
+      <workItem from="1684750630978" duration="891000" />
+      <workItem from="1684756796533" duration="7673000" />
+      <workItem from="1684830054103" duration="4888000" />
     </task>
     <task id="LOCAL-00001" summary="first save">
       <created>1683202984994</created>
@@ -167,7 +218,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683531531677</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="beta version">
+      <created>1683787489714</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1683787489714</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -176,6 +234,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first save" />
     <MESSAGE value="second save" />
-    <option name="LAST_COMMIT_MESSAGE" value="second save" />
+    <MESSAGE value="beta version" />
+    <option name="LAST_COMMIT_MESSAGE" value="beta version" />
   </component>
 </project>

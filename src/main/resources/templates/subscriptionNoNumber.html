@@ -1,9 +1,9 @@
-
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
   <title>Expired subscription</title>
+
   <style>
     body {
       background-color: #f0f0f0;
@@ -11,31 +11,52 @@
       font-family: Arial, sans-serif;
       font-size: 16px;
     }
+
     h1 {
       color: #333333;
       text-align: center;
       margin-top: 50px;
       font-size: 36px;
     }
+
     p {
       color: #666666;
       text-align: center;
       margin-top: 20px;
       font-size: 20px;
     }
+
     form {
       border: 1px solid #666666;
       padding: 20px;
       margin: 50px auto;
-      width: 400px;
+      width: 600px;
       border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       text-align: center;
     }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #cccccc;
+      color: #333333;
+    }
+
     input[type="radio"] {
       margin: 10px;
       font-size: 20px;
     }
+
     input[type="submit"] {
       margin-top: 20px;
       padding: 10px 20px;
@@ -47,19 +68,39 @@
       cursor: pointer;
       transition: all 0.3s ease-in-out;
     }
+
     input[type="submit"]:hover {
       background-color: #999999;
       transform: scale(1.05);
     }
   </style>
+
 </head>
 <body>
 <h1>Your subscription has expired</h1>
-<p>Please choose how you want to renew your subscription:</p>
-<form action="/Billy`sGym/renew/number" method="post">
-  <input type="hidden" name="number" th:value="${number}">
-  <input type="radio" name="period" value="day">Renew for 1 day<br>
-  <input type="radio" name="period" value="month">Renew for 1 month<br>
+<p>Please choose an available subscription:</p>
+<form action="/BillysGym/renew/number" method="post">
+  <input type="hidden" name="originalNumber" th:value="${number}">
+  <table>
+    <thead>
+    <tr>
+      <th>Subscription Name</th>
+      <th>Duration (Days)</th>
+      <th>Price</th>
+      <th>Select</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="abonement : ${abonements}">
+      <td th:text="${abonement.getName()}"></td>
+      <td th:text="${abonement.getDays()}"></td>
+      <td th:text="${abonement.getPrice()}"></td>
+      <td>
+        <input type="radio" name="abonementId" th:value="${abonement.getId()}">
+      </td>
+    </tr>
+    </tbody>
+  </table>
   <input type="submit" value="Renew">
 </form>
 </body>

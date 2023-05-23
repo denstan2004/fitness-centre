@@ -54,11 +54,31 @@
             border: none;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
         }
+        .buttons {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 1.5;
+            text-align: center;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+        }
+        .buttons:hover {
+            background-color: #222;
+        }
     </style>
 </head>
 <body>
 <h1>Form</h1>
-<form action="/Billy`sGym/add/trainer" method="post" enctype="multipart/form-data">
+<a class="buttons" href="http://localhost:8080/admin">На Головну</a>
+<form action="/admin/add/trainer" method="post" enctype="multipart/form-data">
     <label for="name">Name:</label>
     <input type="text" id="name" name="name" required>
     <label for="lastname">Lastname:</label>

@@ -8,6 +8,8 @@ import lombok.Data;
 @Table(name="trainers", schema="public")
 public class Trainer {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
     @Column(name="telephone_number")
     private String telephone;

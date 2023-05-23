@@ -1,65 +1,45 @@
-
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
   <title>Expired subscription</title>
-  <style>
-    body {
-      background-color: #f0f0f0;
-      color: #333333;
-      font-family: Arial, sans-serif;
-      font-size: 16px;
-    }
-    h1 {
-      color: #333333;
-      text-align: center;
-      margin-top: 50px;
-      font-size: 36px;
-    }
-    p {
-      color: #666666;
-      text-align: center;
-      margin-top: 20px;
-      font-size: 20px;
-    }
-    form {
-      border: 1px solid #666666;
-      padding: 20px;
-      margin: 50px auto;
-      width: 400px;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-    input[type="radio"] {
-      margin: 10px;
-      font-size: 20px;
-    }
-    input[type="submit"] {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: #cccccc;
-      border: none;
-      border-radius: 4px;
-      color: #333333;
-      font-size: 20px;
-      cursor: pointer;
-      transition: all 0.3s ease-in-out;
-    }
-    input[type="submit"]:hover {
-      background-color: #999999;
-      transform: scale(1.05);
-    }
+
+  <style> body { background-color: #f0f0f0; color: #333333; font-family: Arial, sans-serif; font-size: 16px; }
+  h1 { color: #333333; text-align: center; margin-top: 50px; font-size: 36px; }
+  p { color: #666666; text-align: center; margin-top: 20px; font-size: 20px; }
+  form { border: 1px solid #666666; padding: 20px; margin: 50px auto; width: 400px; border-radius: 5px; box-shadow: 0 0 10px rgba(0,0,0,0.1); text-align: center; }
+  input[type="radio"] { margin: 10px; font-size: 20px; }
+  input[type="submit"] { margin-top: 20px; padding: 10px 20px; background-color: #cccccc; border: none; border-radius: 4px; color: #333333; font-size: 20px; cursor: pointer; transition: all 0.3s ease-in-out; }
+  input[type="submit"]:hover { background-color: #999999; transform: scale(1.05); }
   </style>
+
 </head>
 <body>
 <h1>Your subscription has expired</h1>
-<p>Please choose how you want to renew your subscription:</p>
-<form action="/Billy`sGym/renew" method="post">
-  <input type="hidden" name="id" th:value="${id}">
-  <input type="radio" name="period" value="day">Renew for 1 day<br>
-  <input type="radio" name="period" value="month">Renew for 1 month<br>
+<p>Please choose an available subscription:</p>
+<form action="/BillysGym/renew" method="post">
+  <input type="hidden" name="originalId" th:value="${id}">
+  <table>
+    <thead>
+    <tr>
+      <th>Subscription Name</th>
+      <th>Duration (Days)</th>
+      <th>Select</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="abonement : ${abonements}">
+      <td th:text="${abonement.getName()}"></td>
+      <td th:text="${abonement.getDays()}"></td>
+      <td th:text="${abonement.getPrice()}"></td>
+
+      <td>
+        <input type="radio" name="abonementId" th:value="${abonement.getId()}">
+        <input type="hidden" name="id" th:value="${id}">
+      </td>
+    </tr>
+    </tbody>
+  </table>
   <input type="submit" value="Renew">
 </form>
 </body>

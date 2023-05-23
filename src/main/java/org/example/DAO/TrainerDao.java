@@ -38,16 +38,32 @@ public class TrainerDao {
         t.commit();
         session.close();
     }
-    public void trainerDelete(String name, String lastname, String surname) {
+    public void trainerDelete(Long id) {
+        cfg.configure("hibernate.cfg.xml");
 
         SessionFactory factory = cfg.buildSessionFactory();
         Session session = factory.openSession() ;
         Transaction tx = session.beginTransaction();
-        Query query = session.createQuery("DELETE FROM Trainer WHERE name=:name AND lastname=:lastname AND surname=:surname");
-        query.setParameter("name", name);
-        query.setParameter("lastname", lastname);
-        query.setParameter("surname", surname);
+        Trainer trainer = session.load(Trainer.class, id);
+        if (trainer != null) {
+            session.delete(trainer);
+        }
         tx.commit();
+        session.close();
+    }
+    public void trainerRefresh(Long id) {
+        cfg.configure("hibernate.cfg.xml");
+
+        SessionFactory factory = cfg.buildSessionFactory();
+        Session session = factory.openSession() ;
+        Transaction tx = session.beginTransaction();
+        Trainer trainer = session.load(Trainer.class, id);
+        if (trainer != null) {
+           trainer.setCountVisitors(0);
+           session.saveOrUpdate(trainer);
+        }
+        tx.commit();
+        session.close();
     }
 
 

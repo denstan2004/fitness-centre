@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Form</title>
+  <title>Abonement Form</title>
   <style>
     body {
       background-color: #ECECEC;
@@ -40,15 +40,18 @@
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
       margin-bottom: 20px;
     }
-    select {
+    button {
       display: block;
-      width: 100%;
-      padding: 10px;
-      font-size: 18px;
-      border-radius: 5px;
+      margin: 0 auto;
+      background-color: #333;
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 24px;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
       border: none;
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-      margin-bottom: 20px;
     }
     .buttons {
       display: inline-block;
@@ -69,48 +72,20 @@
     .buttons:hover {
       background-color: #222;
     }
-    button {
-      display: block;
-      margin: 0 auto;
-      background-color: #333;
-      color: #fff;
-      padding: 10px 20px;
-      font-size: 24px;
-      font-weight: bold;
-      border-radius: 10px;
-      cursor: pointer;
-      border: none;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    }
   </style>
 </head>
 <body>
-<h1>Form</h1>
-<a class="buttons" href="http://localhost:8080/BillysGym">На Головну</a>
-<form action="/BillysGym/add/visitor" method="post" enctype="multipart/form-data">
+<h1>Abonement Form</h1>
+<a class="buttons" href="http://localhost:8080/admin">На Головну</a>
+<form action="/admin/add/abonement" method="post">
   <label for="name">Name:</label>
   <input type="text" id="name" name="name" required>
 
-  <label for="lastname">Lastname:</label>
-  <input type="text" id="lastname" name="lastname" required>
+  <label for="days">Days:</label>
+  <input type="number" id="days" name="days" required>
 
-  <label for="surname">Surname:</label>
-  <input type="text" id="surname" name="surname" required>
-
-  <label for="telephone">Telephone:</label>
-  <input type="tel" id="telephone" name="telephone" required>
-
-  <label for="photo">Photo:</label>
-  <input type="file" id="photo" name="photo"><br>
-
-  <label for="sex">Sex:</label>
-  <select id="sex" name="sex" required>
-    <option value="F">Ч</option>
-    <option value="M">Ж</option>
-  </select>
-
-  <label for="age">Age:</label>
-  <input type="number" id="age" name="age" required>
+  <label for="price">Price:</label>
+  <input type="number" id="price" name="price" required>
 
   <button type="submit">Submit</button>
 </form>

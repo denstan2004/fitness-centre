@@ -2,6 +2,7 @@ package org.example.DAO;
 
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import org.example.Models.Visitor;
 import org.hibernate.Session;
@@ -103,6 +104,22 @@ public class VisitorDao {
         session.close();
         return visitorList;
     }
+    public int getAllVisitorsCount()
+    {
+        int count;
+        List<Visitor> visitorList =new ArrayList<>();
+        Configuration cfg = new Configuration();
+        cfg.configure("hibernate.cfg.xml");
+        SessionFactory factory = cfg.buildSessionFactory();
+        Session session = factory.openSession();
+        Transaction t = session.beginTransaction();
+        Query query = session.createQuery("FROM Visitor");
+        visitorList= query.list();
+       count=visitorList.size();
+        t.commit();
+        session.close();
+        return count;
+    }
 public void visitorSave(Visitor visitor)
 {
     Configuration cfg = new Configuration();
@@ -125,7 +142,7 @@ public void visitorSave(Visitor visitor)
             query.setParameter("surname", surname);
             tx.commit();
     }
-    public void updateSubscriptionVisitor(Visitor visitor) {
+    public void updateSubscriptionVisitor(Visitor visitor,int days) {
         Configuration cfg = new Configuration();
         cfg.configure("hibernate.cfg.xml");
         SessionFactory factory = cfg.buildSessionFactory();
@@ -138,32 +155,60 @@ public void visitorSave(Visitor visitor)
         oldVisitor.setTelephone(visitor.getTelephone());
         oldVisitor.setSurname(visitor.getSurname());
         oldVisitor.setLastname(visitor.getLastname());
-        LocalDateTime newDate = LocalDateTime.now().plusDays(30);
+        LocalDateTime newDate = LocalDateTime.now().plusDays(days);
         oldVisitor.setSubscription(newDate);
         session.update(oldVisitor);
 
         t.commit();
         session.close();
     }
+    public List<Visitor> getVisitorsByAgeRange(long minAge, long maxAge) {
+        List<Visitor> visitors = new ArrayList<>();
 
-    public void updateForOneDay(Visitor visitor) {
         Configuration cfg = new Configuration();
         cfg.configure("hibernate.cfg.xml");
         SessionFactory factory = cfg.buildSessionFactory();
         Session session = factory.openSession();
         Transaction t = session.beginTransaction();
 
-        Visitor oldVisitor = session.get(Visitor.class, visitor.getId());
-        oldVisitor.setName(visitor.getName());
-        oldVisitor.setSubscription(visitor.getSubscription());
-        oldVisitor.setTelephone(visitor.getTelephone());
-        oldVisitor.setSurname(visitor.getSurname());
-        oldVisitor.setLastname(visitor.getLastname());
-        LocalDateTime newDate = LocalDateTime.now();
-        oldVisitor.setSubscription(newDate);
-        session.update(oldVisitor);
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Visitor> criteriaQuery = builder.createQuery(Visitor.class);
+        Root<Visitor> root = criteriaQuery.from(Visitor.class);
+
+        criteriaQuery.select(root)
+                .where(builder.between(root.get("age"), minAge, maxAge));
+
+        Query<Visitor> query = session.createQuery(criteriaQuery);
+        visitors = query.getResultList();
 
         t.commit();
         session.close();
+
+        return visitors;
     }
-}
+
+    public List<Visitor> getVisitorsByAgeRangeAndGender(long minAge, long maxAge, String gender) {
+        List<Visitor> visitors = new ArrayList<>();
+     List <Visitor> result= new ArrayList<>();
+      visitors=getVisitorsByAgeRange(minAge,maxAge);
+      if(gender.equals("both"))
+      {
+          return visitors;
+      }
+      else
+      {for(int i=0; i<visitors.size();i++)
+          {
+
+              if(visitors.get(i).getSex().equals(gender))
+                  result.add(visitors.get(i));
+          }
+          return result;
+      }
+
+      }
+
+    }
+
+
+
+

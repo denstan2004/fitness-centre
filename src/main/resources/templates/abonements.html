@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Visitors</title>
+  <title>Abonements</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98\/W6Uq9+3aC6E9T43AltkaRxp\
   bV99+CYa59iKTSHxyP63XmJXQ5tREQAiBp" crossorigin="anonymous">
   <style>
@@ -58,33 +58,28 @@
 </head>
 <body>
 <div class="container">
-  <h1>Visitors</h1>
-  <a class="button" href="http://localhost:8080/BillysGym">На Головну</a>
+  <h1>Abonements</h1>
+  <a class="button" href="http://localhost:8080/admin">На Головну</a>
   <table>
     <thead>
     <tr>
-      <th>id</th>
-      <th>Ім'я</th>
-      <th>Прізвище</th>
-      <th>По-Батькові</th>
-      <th>номер телефону</th>
-      <th>кінець абонементу</th>
-
+      <th>ID</th>
+      <th>Name</th>
+      <th>Days</th>
+      <th>Price</th>
+      <th>Sold Count</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="visitor : ${visitors}">
-      <td th:text="${visitor.getId()}"></td>
-      <td th:text="${visitor.getName()}"></td>
-      <td th:text="${visitor.getSurname()}"></td>
-      <td th:text="${visitor.getLastname()}"></td>
-      <td th:text="${visitor.getTelephone()}"></td>
-      <td th:text="${visitor.getSubscriptionDayOfMonth()}"></td>
-
+    <tr th:each="abonement : ${abonements}">
+      <td th:text="${abonement.getId()}"></td>
+      <td th:text="${abonement.getName()}"></td>
+      <td th:text="${abonement.getDays()}"></td>
+      <td th:text="${abonement.getPrice()}"></td>
+      <td th:text="${abonement.getSoldCount()}"></td>
     </tr>
     </tbody>
   </table>
 </div>
 </body>
-
 </html>

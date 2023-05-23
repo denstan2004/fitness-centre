@@ -1,9 +1,9 @@
 package org.example.Models;
 import jakarta.persistence.*;
 import lombok.Data;
-import org.hibernate.annotations.Type;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Data
 @Entity
@@ -26,6 +26,38 @@ public class Visitor {
     private  String lastname;
     @Column(name="photo")
     private byte[] photoPath;
+    @Column(name="sex")
+    private  String Sex;
+
+    public Visitor(String telephone, LocalDateTime subscription, String name, String surname, String lastname, byte[] photoPath, String sex, int age) {
+        this.telephone = telephone;
+        this.subscription = subscription;
+        this.name = name;
+        this.surname = surname;
+        this.lastname = lastname;
+        this.photoPath = photoPath;
+        Sex = sex;
+        this.age = age;
+    }
+
+    public String getSex() {
+        return Sex;
+    }
+
+    public void setSex(String sex) {
+        Sex = sex;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    @Column(name="age")
+    private  int age;
 
     public byte[] getPhotoPath() {
         return photoPath;
@@ -92,6 +124,11 @@ public class Visitor {
     public LocalDateTime getSubscription() {
         return subscription;
     }
+    public String getSubscriptionDayOfMonth() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return subscription.format(formatter);
+    }
+
 
     public void setSubscription(LocalDateTime subscription) {
         this.subscription = subscription;
